@@ -13,7 +13,11 @@ class ProfileForm(FlaskForm):
     fname = StringField('First Name', validators=[DataRequired()])
     lname = StringField('Last Name', validators=[DataRequired()]) 
     image = FileField("Image") 
+    role = SelectField('Role',choices=[("Teacher","Teacher"),("Student","Student")])
+    age = IntegerField('How old are you?', validators=[NumberRange(min=0,max=100)])
     submit = SubmitField('Post')
+    
+
 
 class ConsentForm(FlaskForm):
     adult_fname = StringField('First Name',validators=[DataRequired()])
@@ -50,3 +54,9 @@ class ClinicForm(FlaskForm):
     zipcode = StringField('Zipcode',validators=[DataRequired()])
     description = StringField('Description', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+class PuzzleForm(FlaskForm):
+    name = StringField('Subject', validators=[DataRequired()])
+    question = TextAreaField('Blog', validators=[DataRequired()])
+    tag = StringField('Tag', validators=[DataRequired()])
+    submit = SubmitField('Blog')

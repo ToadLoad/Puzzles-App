@@ -34,6 +34,8 @@ class User(UserMixin, Document):
     adult_fname = StringField()
     adult_lname = StringField()
     adult_email = StringField()
+    role = StringField()
+    age = IntField()
     consent = BooleanField(default=False)
 
     meta = {
@@ -97,3 +99,17 @@ class Clinic(Document):
     meta = {
         'ordering': ['-createdate']
     }
+
+class Puzzle(Document):
+    author = ReferenceField('User',reverse_delete_rule=CASCADE) 
+    name = StringField()
+    question = StringField()
+    tag = StringField()
+    create_date = DateTimeField(default=dt.datetime.utcnow)
+    modify_date = DateTimeField()
+
+    meta = {
+        'ordering': ['-createdate']
+    }
+
+    
