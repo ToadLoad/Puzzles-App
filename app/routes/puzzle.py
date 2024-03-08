@@ -13,7 +13,7 @@ import datetime as dt
 # This is a function that is run when the user requests this route.
 def puzzleNew():
     # This gets the form object from the form.py classes that can be displayed on the template.
-    form = Puzzle()
+    form = PuzzleForm()
 
     # This is a conditional that evaluates to 'True' if the user submitted the form successfully.
     # validate_on_submit() is a method of the form object. 
@@ -41,7 +41,7 @@ def puzzleNew():
         # to send them to that blog. url_for takes as its argument the function name
         # for that route (the part after the def key word). You also need to send any
         # other values that are needed by the route you are redirecting to.
-        return redirect(url_for('puzzle',blogID=newPuzzle.id))
+        return redirect(url_for('puzzle',puzzleID=newPuzzle.id))
 
     # if form.validate_on_submit() is false then the user either has not yet filled out
     # the form or the form had an error and the user is sent to a blank form. Form errors are 

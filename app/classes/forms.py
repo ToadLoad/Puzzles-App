@@ -59,4 +59,4 @@ class PuzzleForm(FlaskForm):
     name = StringField('Subject', validators=[DataRequired()])
     question = TextAreaField('Blog', validators=[DataRequired()])
     tag = StringField('Tag', validators=[DataRequired()])
-    submit = SubmitField('Blog')
+    submit = SubmitField('Puzzle')
