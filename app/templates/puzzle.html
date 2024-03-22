@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% if puzzle %}
+    {{moment(puzzle.create_date).calendar()}} by {{puzzle.author.fname}} {{puzzle.author.lname}} 
+    {% if puzzle.modifydate %}
+        modified {{moment(puzzle.modifydate).calendar()}}
+    {% endif %}
+    <br>
+    {% if puzzle.author == current_user %}
+        <a data-toggle="tooltip" data-placement="top" title="Delete Blog" href="/puzzle/delete/{{puzzle.id}}">
+            <img width="40" class="bottom-image" src="/static/delete.png">
+        </a>
+        <a data-toggle="tooltip" data-placement="top" title="Edit Blog" href="/puzzle/edit/{{puzzle.id}}">
+            <img width="40" class="bottom-image" src="/static/edit.png">
+        </a>
+    {% endif %}
+
+    <h1 class="display-5">{{puzzle.name}}</h1>
+    <p class="fs-3 text-break">
+        {% if puzzle.author.image %}
+            <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(puzzle.author.image.read())}}">
+        {% endif %}
+            {{puzzle.question}} <br>
+            {{puzzle.tag}}
+
+    </p>
+    <a href="/comment/new/{{puzzle.id}}" class="btn btn-primary btn-sm" role="button">New Comment</a>
+
+  
+{% else %}
+
+{% endif %}
+
+{% endblock %}
