@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<img src="/static/CloudsPNG.png" class="rounded float-end" width = "200" hieght= "200" alt="...">
-
-<img src="/static/CloudsPNG.png" class="rounded float-start" width = "200" hieght= "200" alt="...">    </div>
+<img src="/static/puzzle.png" class="rounded float-end" width = "200" hieght= "200" alt="...">
+<img src="/static/puzzle.png" class="rounded float-start" width = "200" hieght= "200" alt="...">    </div>
+<br><br>
 <div class="row">
     <div class="col-4">
-        <h1 class="display-1">All Puzzles</h1>
+        <h1 class="display-1">Puzzles</h1>
     </div>
     <div class="col">
-        <a href="/puzzle/new" class="btn btn-primary btn-sm mt-5" role="button">Comment Button</a>
+        <a href="/puzzle/new" class="btn btn-primary btn-sm mt-5" role="button">Start Puzzle</a>
     </div>
 </div>
 
@@ -33,7 +33,7 @@
             </div>
             <div class="col">
                 {% if loop.index == 1 %}
-                    <h3 class="display-5">Name</h3>
+                    <h3 class="display-5">Solved</h3>
                 {% endif %}
                 {{puzzle.name}}
             </div>

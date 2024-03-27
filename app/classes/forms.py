@@ -57,6 +57,6 @@ class ClinicForm(FlaskForm):
 
 class PuzzleForm(FlaskForm):
     name = StringField('Subject', validators=[DataRequired()])
-    question = TextAreaField('Blog', validators=[DataRequired()])
+    question = StringField('Blog', validators=[DataRequired()])
     tag = StringField('Tag', validators=[DataRequired()])
     submit = SubmitField('Puzzle')
