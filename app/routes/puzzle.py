@@ -136,3 +136,7 @@ def puzzleDelete(puzzleID):
     puzzles = Puzzle.objects()  
     # Send the user to the list of remaining blogs.
     return render_template('puzzles.html',puzzles=puzzles)
+
+@app.route('/answers')
+def answers():
+    return render_template('answers.html')

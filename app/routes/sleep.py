@@ -157,3 +157,4 @@ def sleepgraph():
     fig.savefig("app/static/graphs/sleep.png", bbox_inches="tight")
     fig.show()
     return render_template('sleepgraph.html',images=['sleep.png'])
+
