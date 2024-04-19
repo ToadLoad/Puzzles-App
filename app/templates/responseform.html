@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block body %}
+<img src="/static/lightbulb.png" class="rounded float-end" width = "200" hieght= "200" alt="...">
+
+<img src="/static/lightbulb.png" class="rounded float-start" width = "200" hieght= "200" alt="...">    </div>
+<img src="/static/puzzle.png" class="rounded float-end" width = "200" hieght= "200" alt="...">
+
+<img src="/static/puzzle.png" class="rounded float-start" width = "200" hieght= "200" alt="...">    </div>
+        <h1 class="text-center">Solve the Puzzle</h1>
+
+        <div class="text-center">
+
+<br><br><br>
+        
+        <form method=post>
+            {{ form.hidden_tag() }}
+            <p>
+                {{  form.a1.label }} <br>
+                {{ form.a1(size=64) }}
+                <!--List the errors for this field-->
+                {% for error in form.name.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{  form.a2.label }} <br>
+                {{ form.a2(size=64) }}
+                <!--List the errors for this field-->
+                {% for error in form.name.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.a3.label }} <br>
+                {{ form.a3(size=64) }}
+                <!--List the errors for this field-->
+                {% for error in form.tag.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+                {{form.submit()}}
+             <p>
+                <img src="/static/lightbulb.png" class="rounded float-end" width = "200" hieght= "200" alt="...">
+                <img src="/static/lightbulb.png" class="rounded float-start" width = "200" hieght= "200" alt="...">    </div>
+                <img src="/static/puzzle.png" class="rounded float-end" width = "200" hieght= "200" alt="...">
+                <img src="/static/puzzle.png" class="rounded float-start" width = "200" hieght= "200" alt="...">
+
+
+
+
+            
+            </p>
+        </form>
+    </div>
+       
+{% endblock %}

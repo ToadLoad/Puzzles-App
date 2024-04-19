@@ -85,8 +85,8 @@ def response(responseID):
     return render_template('response.html',response=thisResponse,comments=theseComments)
 
 
-@app.route('/response/list')
-@app.route('/responses')
+@app.route('/puzzles/list')
+@app.route('/puzzles')
 # This means the user must be logged in to see this page
 @login_required
 def responseList():
@@ -96,7 +96,7 @@ def responseList():
     # This renders (shows to the user) the blogs.html template. it also sends the blogs object 
     # to the template as a variable named blogs.  The template uses a for loop to display
     # each blog.
-    return render_template('responses.html',responses=responses)
+    return render_template('puzzles.html',responses=responses)
 
 
 @app.route('/response/delete/<responseID>')
