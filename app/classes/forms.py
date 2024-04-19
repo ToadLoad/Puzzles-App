@@ -60,3 +60,9 @@ class PuzzleForm(FlaskForm):
     question = StringField('Blog', validators=[DataRequired()])
     tag = StringField('Rearrange these letters to create a word: L F O R E W', validators=[DataRequired()])
     submit = SubmitField('Solve')
+
+class QuizResponse(FlaskForm):
+    a1 = StringField()
+    a2 = StringField()
+    a3 = StringField()
+    submit = SubmitField('Submit')

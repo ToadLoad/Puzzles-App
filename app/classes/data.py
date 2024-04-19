@@ -112,4 +112,11 @@ class Puzzle(Document):
         'ordering': ['-createdate']
     }
 
-    
+class QuizResponse(Document):
+    q1 = StringField()
+    q2 = StringField()
+    q3 = StringField()
+    a1 = StringField()
+    a2 = StringField()
+    a3 = StringField()
+    score = IntField()
