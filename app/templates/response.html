@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% if response %}
+        <a data-toggle="tooltip" data-placement="top" title="Delete Blog" href="/response/delete/{{response.id}}">
+            <img width="40" class="bottom-image" src="/static/delete.png">
+        </a>
+        <a data-toggle="tooltip" data-placement="top" title="Edit Blog" href="/response/edit/{{response.id}}">
+            <img width="40" class="bottom-image" src="/static/edit.png">
+        </a>
+    {% endif %}
+
+    <p class="fs-3 text-break">
+            {{response.a1}} <br>
+            {{response.a2}} <br>
+            {{response.a3}}
+
+    </p>
+    <a href="/comment/new/{{response.id}}" class="btn btn-primary btn-sm" role="button">New Puzzle</a>
+
+  
+{% else %}
+
+{% endif %}
+
+{% endblock %}

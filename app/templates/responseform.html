@@ -19,7 +19,7 @@
                 {{  form.a1.label }} <br>
                 {{ form.a1(size=64) }}
                 <!--List the errors for this field-->
-                {% for error in form.name.errors %}
+                {% for error in form.a1.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
@@ -27,7 +27,7 @@
                 {{  form.a2.label }} <br>
                 {{ form.a2(size=64) }}
                 <!--List the errors for this field-->
-                {% for error in form.name.errors %}
+                {% for error in form.a2.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>
@@ -35,7 +35,7 @@
                 {{ form.a3.label }} <br>
                 {{ form.a3(size=64) }}
                 <!--List the errors for this field-->
-                {% for error in form.tag.errors %}
+                {% for error in form.a3.errors %}
                     <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </p>

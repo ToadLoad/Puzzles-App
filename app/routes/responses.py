@@ -47,9 +47,8 @@ def responseNew():
             + (1 if form.a2.data in chosenQuestions[1]["a"] else 0)
             + (1 if form.a3.data in chosenQuestions[2]["a"] else 0),
 
-            author = current_user.id,
             # This sets the modifydate to the current datetime.
-            modify_date = dt.datetime.utcnow
+            
         )
         # This is a method that saves the data to the mongoDB database.
         newResponse.save()
@@ -120,6 +119,3 @@ def responseDelete(responseID):
     # Send the user to the list of remaining blogs.
     return render_template('responses.html',responses=responses)
 
-@app.route('/answers')
-def answers():
-    return render_template('answers.html')
