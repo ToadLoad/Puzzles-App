@@ -100,18 +100,6 @@ class Clinic(Document):
         'ordering': ['-createdate']
     }
 
-class Puzzle(Document):
-    author = ReferenceField('User',reverse_delete_rule=CASCADE) 
-    name = StringField()
-    question = StringField()
-    tag = StringField()
-    create_date = DateTimeField(default=dt.datetime.utcnow)
-    modify_date = DateTimeField()
-
-    meta = {
-        'ordering': ['-createdate']
-    }
-
 class Response(Document):
     author = ReferenceField('User',reverse_delete_rule=CASCADE)
     q1 = StringField()

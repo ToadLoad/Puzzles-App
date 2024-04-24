@@ -9,33 +9,28 @@
         <h1 class="display-1">Puzzles</h1>
     </div>
     <div class="col">
-        <a href="/puzzle/new" class="btn btn-primary btn-sm mt-5" role="button">Start Puzzle</a>
+        <a href="/response/new" class="btn btn-primary btn-sm mt-5" role="button">Start Puzzle</a>
     </div>
 </div>
 
-{% if puzzles %}
-    {% for puzzle in puzzles %}
+{% if responses %}
+    {% for response in responses %}
         <div class="row border-bottom">
             <div class="col-2">
                 {% if loop.index == 1 %}
-                <h3 class="display-5">Date</h3>
+                <h3 class="display-5">Puzzle</h3>
                 {% endif %}
 
-                <a href="/puzzle/{{puzzle.id}}">
-                    {{moment(puzzle.create_date).calendar()}}
+                <a href="/response/{{response.id}}">
+                    <p>Puzzle</p>
+
                 </a>
             </div>
             <div class="col-2">
                 {% if loop.index == 1 %}
-                <h3 class="display-5">User</h3>
+                <h3 class="display-5">Score</h3>
                 {% endif %}
-                {{puzzle.author.fname}} {{puzzle.author.lname}}
-            </div>
-            <div class="col">
-                {% if loop.index == 1 %}
-                    <h3 class="display-5">Solved</h3>
-                {% endif %}
-                {{puzzle.name}}
+                {{response.score}}
             </div>
         </div>
     {% endfor %}

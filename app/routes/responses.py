@@ -96,7 +96,7 @@ def responseList():
     # This renders (shows to the user) the blogs.html template. it also sends the blogs object 
     # to the template as a variable named blogs.  The template uses a for loop to display
     # each blog.
-    return render_template('puzzles.html',responses=responses)
+    return render_template('responses.html',responses=responses)
 
 
 @app.route('/response/delete/<responseID>')

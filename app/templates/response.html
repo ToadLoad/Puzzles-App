@@ -5,11 +5,10 @@
 {% if response %}
     
     <br>
-    {% if response.author == current_user %}
-        <a data-toggle="tooltip" data-placement="top" title="Delete Blog" href="/response/delete/{{response.id}}">
-            <img width="40" class="bottom-image" src="/static/delete.png">
-        </a>
-    {% endif %}
+        {% if response.author == current_user %}
+            <a data-toggle="tooltip" data-placement="top" title="Delete Blog" href="/response/delete/{{response.id}}"><img width="40" class="bottom-image" src="/static/delete.png">
+            </a>
+        {% endif %}
 
     <p class="fs-3 text-break">
         {% if response.author.image %}

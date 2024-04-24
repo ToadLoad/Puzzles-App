@@ -55,12 +55,6 @@ class ClinicForm(FlaskForm):
     description = StringField('Description', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
-class PuzzleForm(FlaskForm):
-    name = StringField('What is 5+5?', validators=[DataRequired()])
-    question = StringField('Blog', validators=[DataRequired()])
-    tag = StringField('Rearrange these letters to create a word: L F O R E W', validators=[DataRequired()])
-    submit = SubmitField('Solve')
-
 class ResponseForm(FlaskForm):
     a1 = StringField()
     a2 = StringField()

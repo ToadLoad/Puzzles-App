@@ -4,5 +4,4 @@ from .forum import *
 from .user import *
 from .sleep import *
 from .clinic import *
-from .puzzle import *
 from .responses import *
