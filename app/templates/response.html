@@ -3,18 +3,27 @@
 {% block body %}
 
 {% if response %}
+    
+    <br>
+    {% if response.author == current_user %}
         <a data-toggle="tooltip" data-placement="top" title="Delete Blog" href="/response/delete/{{response.id}}">
             <img width="40" class="bottom-image" src="/static/delete.png">
-        </a>
-        <a data-toggle="tooltip" data-placement="top" title="Edit Blog" href="/response/edit/{{response.id}}">
-            <img width="40" class="bottom-image" src="/static/edit.png">
         </a>
     {% endif %}
 
     <p class="fs-3 text-break">
-            {{response.a1}} <br>
-            {{response.a2}} <br>
-            {{response.a3}}
+        {% if response.author.image %}
+            <img width="120" class="img-thumbnail float-start me-2" src="data:image;base64,{{base64encode(response.author.image.read())}}">
+        {% endif %}
+            <h4>
+            {{response.q1}}<br>
+            {{response.a1}}<br>
+            {{response.q2}}<br>
+            {{response.a2}}<br>
+            {{response.q3}}<br>
+            {{response.a3}}<br>
+            </h4>
+            <h4>score: {{response.score}}</h4>    
 
     </p>
     <a href="/comment/new/{{response.id}}" class="btn btn-primary btn-sm" role="button">New Puzzle</a>

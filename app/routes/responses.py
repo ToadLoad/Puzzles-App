@@ -8,9 +8,11 @@ from flask_login import login_required
 import datetime as dt
 from random import sample
 
-questions = [{"q":"1+1","a":["2","two"]},
-             {"q":"1+1","a":["2","two"]},
-             {"q":"1+1","a":["2","two"]}]
+questions = [{"q":"1+1?","a":["2","two"]},
+             {"q":"1+2?","a":["3","three"]},
+             {"q":"1+3?","a":["4","four"]},
+             {"q":"What has a lot of water and starts with an O?","a":["Ocean","ocean","OCEAN"]},
+             {"q":"Rearrange these letters to create a word: L F O R E W","a":["FLOWER","flower"]}]
 
 @app.route('/response/new', methods=['GET', 'POST'])
 # This means the user must be logged in to see this page
@@ -47,7 +49,6 @@ def responseNew():
             + (1 if form.a2.data in chosenQuestions[1]["a"] else 0)
             + (1 if form.a3.data in chosenQuestions[2]["a"] else 0),
 
-            # This sets the modifydate to the current datetime.
             
         )
         # This is a method that saves the data to the mongoDB database.

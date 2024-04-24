@@ -113,6 +113,7 @@ class Puzzle(Document):
     }
 
 class Response(Document):
+    author = ReferenceField('User',reverse_delete_rule=CASCADE)
     q1 = StringField()
     q2 = StringField()
     q3 = StringField()
