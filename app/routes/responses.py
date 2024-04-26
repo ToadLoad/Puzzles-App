@@ -47,9 +47,9 @@ def responseNew():
             a3 = form.a3.data,
             score = (1 if form.a1.data in chosenQuestions[0]["a"] else 0)
             + (1 if form.a2.data in chosenQuestions[1]["a"] else 0)
-            + (1 if form.a3.data in chosenQuestions[2]["a"] else 0),
+            + (1 if form.a3.data in chosenQuestions[2]["a"] else 0),    
+            author = current_user.id,
 
-            
         )
         # This is a method that saves the data to the mongoDB database.
         newResponse.save()
@@ -119,4 +119,7 @@ def responseDelete(responseID):
     responses = Response.objects()  
     # Send the user to the list of remaining blogs.
     return render_template('responses.html',responses=responses)
+
+
+
 
