@@ -59,4 +59,14 @@ class ResponseForm(FlaskForm):
     a1 = StringField()
     a2 = StringField()
     a3 = StringField()
+    ca1 = StringField()
+    ca2 = StringField()
+    ca3 = StringField()
+    q1 = StringField()
+    q2 = StringField()
+    q3 = StringField()
+
+    #remove ca and q
+
     submit = SubmitField('Solve')
+    chosenQuestions = None

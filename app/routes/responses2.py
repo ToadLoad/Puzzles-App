@@ -14,7 +14,6 @@ questions = [{"q":"1+1?","a":["2","two"]},
              {"q":"What has a lot of water and starts with an O?","a":["Ocean","ocean","OCEAN"]},
              {"q":"Rearrange these letters to create a word: L F O R E W","a":["FLOWER","flower"]}]
 
-
 @app.route('/response/new', methods=['GET', 'POST'])
 # This means the user must be logged in to see this page
 @login_required
@@ -23,12 +22,6 @@ def responseNew():
     # This gets the form object from the form.py classes that can be displayed on the template.
     form = ResponseForm()
 
-    chosenQuestions = sample(questions,k=3)
-
-    form.a1.label = chosenQuestions[0]["q"]
-    form.a2.label = chosenQuestions[1]["q"]
-    form.a3.label = chosenQuestions[2]["q"]
-
     # This is a conditional that evaluates to 'True' if the user submitted the form successfully.
     # validate_on_submit() is a method of the form object. 
     if form.validate_on_submit():
@@ -36,21 +29,21 @@ def responseNew():
         # This stores all the values that the user entered into the new blog form. 
         # Blog() is a mongoengine method for creating a new blog. 'newBlog' is the variable 
         # that stores the object that is the result of the Blog() method.  
+
         newResponse = Response(
             # the left side is the name of the field from the data table
             # the right side is the data the user entered which is held in the form object.
 
-            #q1 = form.a1.label
-            q1 = chosenQuestions[0]["q"],
-            q2 = chosenQuestions[1]["q"],
-            q3 = chosenQuestions[2]["q"],
+            q1 = form.q1.data,
+            q2 = form.q2.data,
+            q3 = form.q3.data,
             a1 = form.a1.data,
             a2 = form.a2.data,
             a3 = form.a3.data,
-            score = (1 if form.a1.data in chosenQuestions[0]["a"] else 0)
-            + (1 if form.a2.data in chosenQuestions[1]["a"] else 0)
-            + (1 if form.a3.data in chosenQuestions[2]["a"] else 0),    
-            author = current_user.id,
+            score = (1 if form.a1.data in form.ca1.data.split(", ") else 0)
+            + (1 if form.a2.data in form.ca2.data.split(", ") else 0)
+            + (1 if form.a3.data in form.ca3.data.split(", ") else 0),    
+            author = current_user.id
 
         )
         # This is a method that saves the data to the mongoDB database.
@@ -63,6 +56,17 @@ def responseNew():
         # for that route (the part after the def key word). You also need to send any
         # other values that are needed by the route you are redirecting to.
         return redirect(url_for('response',responseID=newResponse.id))
+    else:
+        form.chosenQuestions = sample(questions,k=3)
+        form.q1.data = form.chosenQuestions[0]["q"]
+        form.q2.data = form.chosenQuestions[1]["q"]
+        form.q3.data = form.chosenQuestions[2]["q"]
+        form.a1.label = form.chosenQuestions[0]["q"]
+        form.a2.label = form.chosenQuestions[1]["q"]
+        form.a3.label = form.chosenQuestions[2]["q"]
+        form.ca1.data = ", ".join(form.chosenQuestions[0]["a"])
+        form.ca2.data = ", ".join(form.chosenQuestions[1]["a"])
+        form.ca3.data = ", ".join(form.chosenQuestions[2]["a"])
 
     # if form.validate_on_submit() is false then the user either has not yet filled out
     # the form or the form had an error and the user is sent to a blank form. Form errors are 
