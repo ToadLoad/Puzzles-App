@@ -12,7 +12,11 @@ questions = [{"q":"1+1?","a":["2","two"]},
              {"q":"1+2?","a":["3","three"]},
              {"q":"1+3?","a":["4","four"]},
              {"q":"What has a lot of water and starts with an O?","a":["Ocean","ocean","OCEAN"]},
-             {"q":"Rearrange these letters to create a word: L F O R E W","a":["FLOWER","flower"]}]
+             {"q":"Rearrange these letters to create a word: L F O R E W","a":["FLOWER","flower"]},
+             {"q":"","a":[""]},
+             {"q":"","a":[""]},
+             {"q":"","a":[""]},
+             {"q":"","a":[""]},]
 
 
 @app.route('/response/new', methods=['GET', 'POST'])
@@ -23,11 +27,11 @@ def responseNew():
     # This gets the form object from the form.py classes that can be displayed on the template.
     form = ResponseForm()
 
-    chosenQuestions = sample(questions,k=3)
+    #chosenQuestions = sample(questions,k=3)
 
-    form.a1.label = chosenQuestions[0]["q"]
-    form.a2.label = chosenQuestions[1]["q"]
-    form.a3.label = chosenQuestions[2]["q"]
+    form.a1.label = questions[0]["q"]
+    form.a2.label = questions[1]["q"]
+    form.a3.label = questions[2]["q"]
 
     # This is a conditional that evaluates to 'True' if the user submitted the form successfully.
     # validate_on_submit() is a method of the form object. 
@@ -40,16 +44,15 @@ def responseNew():
             # the left side is the name of the field from the data table
             # the right side is the data the user entered which is held in the form object.
 
-            #q1 = form.a1.label
-            q1 = chosenQuestions[0]["q"],
-            q2 = chosenQuestions[1]["q"],
-            q3 = chosenQuestions[2]["q"],
+            q1 = form.a1.label,
+            q2 = form.a2.label,
+            q3 = form.a3.label,
             a1 = form.a1.data,
             a2 = form.a2.data,
             a3 = form.a3.data,
-            score = (1 if form.a1.data in chosenQuestions[0]["a"] else 0)
-            + (1 if form.a2.data in chosenQuestions[1]["a"] else 0)
-            + (1 if form.a3.data in chosenQuestions[2]["a"] else 0),    
+            score = (1 if form.a1.data in questions[0]["a"] else 0)
+            + (1 if form.a2.data in questions[1]["a"] else 0)
+            + (1 if form.a3.data in questions[2]["a"] else 0),    
             author = current_user.id,
 
         )
@@ -69,6 +72,65 @@ def responseNew():
     # stored in the form object and are displayed on the form. take a look at blogform.html to 
     # see how that works.
     return render_template('responseform.html',form=form)
+
+
+
+@app.route('/response/new2', methods=['GET', 'POST'])
+@login_required
+def responseNew():
+    form = ResponseForm()
+
+    form.a4.label = questions[3]["q"]
+    form.a5.label = questions[4]["q"]
+    form.a6.label = questions[5]["q"]
+
+    if form.validate_on_submit():
+        newResponse = Response(
+            q4 = form.a4.label,
+            q5 = form.a5.label,
+            q6 = form.a6.label,
+            a4 = form.a4.data,
+            a5 = form.a5.data,
+            a6 = form.a6.data,
+            score = (1 if form.a4.data in questions[3]["a"] else 0)
+            + (1 if form.a5.data in questions[4]["a"] else 0)
+            + (1 if form.a6.data in questions[5]["a"] else 0),    
+            author = current_user.id,
+
+        )
+        newResponse.save()
+        return redirect(url_for('response',responseID=newResponse.id))
+    return render_template('responseform.html',form=form)
+
+
+
+@app.route('/response/new3', methods=['GET', 'POST'])
+@login_required
+def responseNew():
+    form = ResponseForm()
+
+    form.a7.label = questions[6]["q"]
+    form.a8.label = questions[7]["q"]
+    form.a9.label = questions[8]["q"]
+
+    if form.validate_on_submit():
+        newResponse = Response(
+            q7 = form.a7.label,
+            q8 = form.a8.label,
+            q9 = form.a9.label,
+            a7 = form.a7.data,
+            a8 = form.a8.data,
+            a9 = form.a9.data,
+            score = (1 if form.a7.data in questions[6]["a"] else 0)
+            + (1 if form.a8.data in questions[7]["a"] else 0)
+            + (1 if form.a9.data in questions[8]["a"] else 0),    
+            author = current_user.id,
+
+        )
+        newResponse.save()
+        return redirect(url_for('response',responseID=newResponse.id))
+    return render_template('responseform.html',form=form)
+
 
 
 @app.route('/response/<responseID>')

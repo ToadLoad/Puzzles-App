@@ -56,17 +56,22 @@ class ClinicForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class ResponseForm(FlaskForm):
-    a1 = StringField()
-    a2 = StringField()
-    a3 = StringField()
-    ca1 = StringField()
-    ca2 = StringField()
-    ca3 = StringField()
     q1 = StringField()
     q2 = StringField()
     q3 = StringField()
-
-    #remove ca and q
-
+    q4 = StringField()
+    q5 = StringField()
+    q6 = StringField()
+    q7 = StringField()
+    q8 = StringField()
+    q9 = StringField()
+    a1 = StringField()
+    a2 = StringField()
+    a3 = StringField()
+    a4 = StringField()
+    a5 = StringField()
+    a6 = StringField()
+    a7 = StringField()
+    a8 = StringField()
+    a9 = StringField()
     submit = SubmitField('Solve')
-    chosenQuestions = None
