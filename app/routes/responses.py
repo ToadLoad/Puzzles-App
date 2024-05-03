@@ -77,7 +77,7 @@ def responseNew():
 
 @app.route('/response/new2', methods=['GET', 'POST'])
 @login_required
-def responseNew():
+def responseNew2():
     form = ResponseForm()
 
     form.a4.label = questions[3]["q"]
@@ -100,13 +100,13 @@ def responseNew():
         )
         newResponse.save()
         return redirect(url_for('response',responseID=newResponse.id))
-    return render_template('responseform.html',form=form)
+    return render_template('responseform2.html',form=form)
 
 
 
 @app.route('/response/new3', methods=['GET', 'POST'])
 @login_required
-def responseNew():
+def responseNew3():
     form = ResponseForm()
 
     form.a7.label = questions[6]["q"]
@@ -129,7 +129,7 @@ def responseNew():
         )
         newResponse.save()
         return redirect(url_for('response',responseID=newResponse.id))
-    return render_template('responseform.html',form=form)
+    return render_template('responseform3.html',form=form)
 
 
 
