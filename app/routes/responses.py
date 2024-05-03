@@ -13,10 +13,10 @@ questions = [{"q":"1+1?","a":["2","two"]},
              {"q":"1+3?","a":["4","four"]},
              {"q":"What has a lot of water and starts with an O?","a":["Ocean","ocean","OCEAN"]},
              {"q":"Rearrange these letters to create a word: L F O R E W","a":["FLOWER","flower"]},
-             {"q":"","a":[""]},
-             {"q":"","a":[""]},
-             {"q":"","a":[""]},
-             {"q":"","a":[""]},]
+             {"q":"What do you use to communicate and is a 5 letter word?","a":["Phone","phone","PHONE"]},
+             {"q":"Which season is cold?","a":["Winter","winter","WINTER"]},
+             {"q":"Which vehicle can fly?","a":["Airplane","airplane","AIRPLANE","Plane","plane","PLANE"]},
+             {"q":"Which planet do we live in?","a":["Earth","earth","EARTH"]},]
 
 
 @app.route('/response/new', methods=['GET', 'POST'])
@@ -85,7 +85,7 @@ def responseNew2():
     form.a6.label = questions[5]["q"]
 
     if form.validate_on_submit():
-        newResponse = Response(
+        newResponse2 = Response(
             q4 = form.a4.label,
             q5 = form.a5.label,
             q6 = form.a6.label,
@@ -98,8 +98,8 @@ def responseNew2():
             author = current_user.id,
 
         )
-        newResponse.save()
-        return redirect(url_for('response',responseID=newResponse.id))
+        newResponse2.save()
+        return redirect(url_for('response2',responseID=newResponse2.id))
     return render_template('responseform2.html',form=form)
 
 
@@ -114,7 +114,7 @@ def responseNew3():
     form.a9.label = questions[8]["q"]
 
     if form.validate_on_submit():
-        newResponse = Response(
+        newResponse3 = Response(
             q7 = form.a7.label,
             q8 = form.a8.label,
             q9 = form.a9.label,
@@ -127,8 +127,8 @@ def responseNew3():
             author = current_user.id,
 
         )
-        newResponse.save()
-        return redirect(url_for('response',responseID=newResponse.id))
+        newResponse3.save()
+        return redirect(url_for('response3',responseID=newResponse3.id))
     return render_template('responseform3.html',form=form)
 
 
@@ -147,6 +147,41 @@ def response(responseID):
     theseComments = Comment.objects(response=thisResponse)
     # Send the blog object and the comments object to the 'blog.html' template.
     return render_template('response.html',response=thisResponse,comments=theseComments)
+
+
+
+@app.route('/response2/<responseID>')
+# This route will only run if the user is logged in.
+@login_required
+def response2(responseID):
+    # retrieve the blog using the blogID
+    thisResponse = Response.objects.get(id=responseID)
+    # If there are no comments the 'comments' object will have the value 'None'. Comments are 
+    # related to blogs meaning that every comment contains a reference to a blog. In this case
+    # there is a field on the comment collection called 'blog' that is a reference the Blog
+    # document it is related to.  You can use the blogID to get the blog and then you can use
+    # the blog object (thisBlog in this case) to get all the comments.
+    theseComments = Comment.objects(response=thisResponse)
+    # Send the blog object and the comments object to the 'blog.html' template.
+    return render_template('response2.html',response=thisResponse,comments=theseComments)
+
+
+
+@app.route('/response3/<responseID>')
+# This route will only run if the user is logged in.
+@login_required
+def response3(responseID):
+    # retrieve the blog using the blogID
+    thisResponse = Response.objects.get(id=responseID)
+    # If there are no comments the 'comments' object will have the value 'None'. Comments are 
+    # related to blogs meaning that every comment contains a reference to a blog. In this case
+    # there is a field on the comment collection called 'blog' that is a reference the Blog
+    # document it is related to.  You can use the blogID to get the blog and then you can use
+    # the blog object (thisBlog in this case) to get all the comments.
+    theseComments = Comment.objects(response=thisResponse)
+    # Send the blog object and the comments object to the 'blog.html' template.
+    return render_template('response3.html',response=thisResponse,comments=theseComments)
+
 
 
 @app.route('/puzzles/list')
